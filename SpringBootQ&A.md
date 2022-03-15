@@ -149,3 +149,6 @@ To instruct an auto-configuration class to back off when a bean exists, you have
 
 value: This attribute stores the type of beans to be checked
 name: This attribute stores the name of beans to be checked
+
+### what is @ComponentScan
+@ComponentScan tells Spring in which packages you have annotated classes which should be managed by Spring. So, for example, if you have a class annotated with @Controller which is in a package which is not scanned by Spring, you will not be able to use it as Spring controller.
