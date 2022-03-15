@@ -130,3 +130,18 @@ If the class is not on the classpath, then to exclude the auto-configuration, yo
 1
 @EnableAutoConfiguration(excludeName={Sample.class})
 Apart from this, Spring Boot also provides the facility to exclude list of auto-configuration classes by using the spring.autoconfigure.exclude property. You can go forward, and add it either in the application.properties or add multiple classes with comma-separated.
+
+### Mention the advantages of the YAML file than Properties file and the different ways to load YAML file in Spring boot.
+The advantages of the YAML file than a properties file is that the data is stored in a hierarchical format. So, it becomes very easy for the developers to debug if there is an issue. The SpringApplication class supports the YAML file as an alternative to properties whenever you use the SnakeYAML library on your classpath. The different ways to load a YAML file in Spring Boot is as follows:
+
+Use YamlMapFactoryBean to load YAML as a Map
+Use YamlPropertiesFactoryBean to load YAML as Properties
+
+# Explain how to register a custom auto-configuration.
+In order to register an auto-configuration class, you have to mention the fully-qualified name under the **@EnableAutoConfiguration key META-INF/spring. factories file. Also, if we build the with maven, then this file should be placed in the resources/META-INT directory. **
+
+# How to instruct an auto-configuration to back off when a bean exists?
+To instruct an auto-configuration class to back off when a bean exists, you have to use the @ConditionalOnMissingBean annotation. The attributes of this annotation are as follows:
+
+value: This attribute stores the type of beans to be checked
+name: This attribute stores the name of beans to be checked
