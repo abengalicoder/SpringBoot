@@ -6,7 +6,11 @@ It is a Spring module that offers Rapid Application Development to Spring framew
 ### 2) Mention some advantages of Spring Boot
 
 Here are some major advantages of using spring-boot:
-
+- Easy to understand and develop spring applications.
+- Spring Boot is nothing but an existing framework with the addition of an embedded HTTP server and annotation configuration which makes it easier to understand and faster the process of development.
+- Increases productivity and reduces development time.
+- Minimum configuration.
+- We don’t need to write any XML configuration, only a few annotations are required to do the configuration
 - Helps you to create a stand-alone application, which can be started using java.jar.
 - It offers pinpointed‘started’ POMs to Maven configuration.
 - Allows you to Embed Undertow, Tomcat, or Jetty directly.
