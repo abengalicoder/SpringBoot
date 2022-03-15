@@ -8,7 +8,7 @@ Once the dispatcher servlet receives a request, it forwards it to handler mappin
 Again, the servlet sends the request to the view resolver for getting the required view and then it sends the response to the client browser.
 
 Code Example to show dispatcher servlet usage:
-
+~~~
 <web-app>
  
 <display-name>Software Testing Help Web Application</display-name>
@@ -25,6 +25,8 @@ Code Example to show dispatcher servlet usage:
 </servlet-mapping>
  
 </web-app>
+~~~
+![image](https://user-images.githubusercontent.com/100063114/158343937-c1bb7915-3b7d-423c-94ab-7ff7c25fa177.png)
 
 # Explain Model, ModelMap and ModelAndView?
 The Model interface defines a holder for model attributes. The ModelMap has a similar purpose, with the ability to pass a collection of values. It then treats those values as if they were within a Map. We should note that in Model (ModelMap) we can only store data. We put data in and return a view name.
