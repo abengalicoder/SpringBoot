@@ -115,3 +115,56 @@ A volatile variable is basically a keyword that is used to ensure and address th
 ### How do threads communicate with each other?
 Threads can communicate using three methods i.e., wait(), notify(), and notifyAll()
 
+### What is synchronized method and synchronized block? Which one should be preferred?
+- Synchronized Method: In this method, the thread acquires a lock on the object when they enter the synchronized method and releases the lock either normally or by throwing an exception when they leave the method.  No other thread can use the whole method unless and until the current thread finishes its execution and release the lock. It can be used when one wants to lock on the entire functionality of a particular method. 
+
+- Synchronized Block: In this method, the thread acquires a lock on the object between parentheses after the synchronized keyword, and releases the lock when they leave the block. No other thread can acquire a lock on the locked object unless and until the synchronized block exists. It can be used when one wants to keep other parts of the programs accessible to other threads.
+
+### What is thread starvation?
+Thread starvation is basically a situation or condition where a thread won’t be able to have regular access to shared resources and therefore is unable to proceed or make progress. This is because other threads have high priority and occupy the resources for too long. This usually happens with low-priority threads that do not get CPU for its execution to carry on. 
+~~~
+class StarvationDemo extends Thread {
+    static int threadcount = 1;
+    public void run()
+    {
+        System.out.println(threadcount + "st Child" +
+                            " Thread execution starts");
+        System.out.println("Child thread execution completes");
+        threadcount++;
+    }
+    public static void main(String[] args)
+               throws InterruptedException
+    {
+        System.out.println("Main thread execution starts");
+ 
+        // Thread priorities are set in a way that thread5
+        // gets least priority.
+        StarvationDemo thread1 = new StarvationDemo();
+        thread1.setPriority(10);
+        StarvationDemo thread2 = new StarvationDemo();
+        thread2.setPriority(9);
+        StarvationDemo thread3 = new StarvationDemo();
+        thread3.setPriority(8);
+        StarvationDemo thread4 = new StarvationDemo();
+        thread4.setPriority(7);
+        StarvationDemo thread5 = new StarvationDemo();
+        thread5.setPriority(6);
+ 
+        thread1.start();
+        thread2.start();
+        thread3.start();
+        thread4.start();
+ 
+        // Here thread5 have to wait because of the
+        // other thread. But after waiting for some
+        // interval, thread5 will get the chance of
+        // execution. It is known as Starvation
+        thread5.start();
+ 
+        System.out.println("Main thread execution completes");
+    }
+}
+~~~
+
+### What is BlockingQueue?
+BlockingQueue basically represents a queue that is thread-safe. Producer thread inserts resource/element into the queue using put() method unless it gets full and consumer thread takes resources from the queue using take() method until it gets empty. But if a thread tries to dequeue from an empty queue, then a particular thread will be blocked until some other thread inserts an item into the queue, or if a thread tries to insert an item into a queue that is already full, then a particular thread will be blocked until some threads take away an item from the queue. 
