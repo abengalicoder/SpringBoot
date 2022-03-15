@@ -62,4 +62,85 @@ A Job is made up of many steps and each step is a READ-PROCESS-WRITE task or a s
                 .build();
     }
 ~~~
+### Why to use "incrementer(new RunIdIncrementer())" while configuring Job?
+Ans:
+incrementer(new RunIdIncrementer())
+You can notice while creating Job, we have used incrementer. Since jobs uses a database to maintain execution state, you'll need an incrementer in this job definition. After that, you create a list of each step (though this job has only one step). When the job is completed, the Java API generates a perfectly configured job.
 
+### Q: What is RunIdIncrementer in Spring Batch?
+Ans:
+We cannot rerun a Job if a JobExecution for this job has been COMPLETED, according to the Spring Batch guidelines. Since it updates the job parameters internally, a RunIdIncrementer instance can be used to run the same job multiple times.
+
+
+### What is Step in Job?
+Ans:
+Spring Batch Step is an independent part of a job. As per above Spring Batch structure diagram, each Step consist of an ItemReader, ItemProcessor (optional) and an ItemWriter. Note: A Job can have one or more steps.
+~~~
+/**
+ * Step consist of an ItemReader, ItemProcessor and an ItemWriter.
+ * @return step
+ */
+@Bean
+public Step step1() {
+    return stepBuilderFactory.get("step1")
+       .<String, String> chunk(1)
+       .reader(new MessageReader())
+       .processor(new MessageProcessor())
+       .writer(new MessageWriter())
+       .build();
+}
+~~~
+### What is ItemReader?
+Ans:
+An ItemReader reads data into a Spring Batch application from a particular source.
+~~~
+public class MessageReader implements ItemReader<String> {
+    /**
+     * It read the data from the given source
+     *
+     * @return String
+     * @throws Exception
+     */
+    @Override
+    public String read() throws Exception {
+
+        //read and pass message to processor to process the message
+        return ...;
+    }
+}
+~~~
+
+##What is ItemProcessor?
+Ans:
+After reading the input data using itemReader, ItemProcessor applies business logic on that input data and then writes to the file / database by using itemWriter.
+
+public class MessageProcessor implements ItemProcessor<String, String> {
+    /**
+     * Read input data from itemReader, and then ItemProcessor applies the business logic here
+     *
+     * @param content
+     * @return String
+     * @throws Exception
+     */
+    @Override
+    public String process(String content) throws Exception {
+       // handle business logic here
+    }
+}
+
+What is ItemWriter?
+Ans:
+ItemWriter writes data from the Spring Batch application to a particular destination.
+
+public class MessageWriter implements ItemWriter<String> {
+    /**
+     * ItemWriter writes received data to destination.
+     *
+     * @param inputMessage
+     * @throws Exception
+     */
+    @Override
+    public void write(List<? extends String> inputMessage) throws Exception {
+        // write data to destination eg to database MYSQL etc..
+    }
+}
