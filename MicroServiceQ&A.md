@@ -107,3 +107,9 @@ Technical Challenges:
 - It is difficult to automate because of the number of smaller components. For that reason, each component must be built, deployed, and monitored separately.   
 - It is difficult to manage configurations across different environments for all components. 
 - Challenges associated with deployment, debugging, and testing
+
+### What is Cohesion?
+The degree to which the elements inside a module belong together is said to be cohesion.
+
+### What is Coupling?
+The measure of the strength of the dependencies between components is said to be coupling. A good design is always said to have High Cohesion and Low Coupling.
