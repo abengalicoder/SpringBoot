@@ -36,13 +36,6 @@ On the other hand, with the ModelAndView, we return the object itself. We set al
 # What Is ViewResolver in Spring?
 The ViewResolver enables an application to render models in the browser – without tying the implementation to a specific view technology – by mapping view names to actual views.
 
-# What Is Spring MVC Interceptor and How to Use It?
-Spring MVC Interceptors allow us to intercept a client request and process it at three places – before handling, after handling, or after completion (when the view is rendered) of a request.
-
-The interceptor can be used for cross-cutting concerns and to avoid repetitive handler code like logging, changing globally used parameters in Spring model, etc.
-
-For details and various implementations, take a look at Introduction to Spring MVC HandlerInterceptor article.
-
 # What Does the @ExceptionHandler Annotation Do?
 The @ExceptionHandler annotation allows us to define a method that will handle the exceptions. We may use the annotation independently, but it's a far better option to use it together with the @ControllerAdvice. Thus, we can set up a global error handling mechanism. In this way, we don't need to write the code for the exception handling within every controller.
 
@@ -86,3 +79,83 @@ There are many parts of Aspect Oriented Programming. These are mentioned below:
 - Pointcut: It is responsible for the execution of advice in terms of regular expressions.
 - Joint Point: It is a point in the application for processes like exception handling, execution of the method, variable values change, etc.
 - Advice Arguments: These arguments are used for passing of methods.
+
+# What Is Spring MVC Interceptor and How to Use It?
+Spring MVC Interceptors allow us to intercept a client request and process it at three places – before handling, after handling, or after completion (when the view is rendered) of a request.
+
+The interceptor can be used for cross-cutting concerns and to avoid repetitive handler code like logging, changing globally used parameters in Spring model, etc.
+
+For details and various implementations, take a look at Introduction to Spring MVC HandlerInterceptor article.
+
+# What are some uses of interceptors ?	Java EE
+- Authentication / Authorization
+- URL forwarding
+- Auditing / Logging
+- Localization
+
+# What are the advantages of Spring interceptor over Servlet Filters ?	
+Ans. Spring Interceptor are Spring beans and hence they can inject other beans and can be used with other Spring frameworks concepts like AOP.
+
+![image](https://user-images.githubusercontent.com/100063114/158345453-ee58eaed-7ad8-4e76-89aa-2175004c5bf8.png)
+
+## Working with Interceptor
+
+The interceptor is actually a class that either implements the HandlerInterceptor interface or extends the HandlerInterceptorAdapter, the adapter is an abstract class and does not need us to provide an implementation for all the three methods ie. preHandle(), postHandle() and afterCompletion(), which makes it easy for us to implement what we want where as HandlerInterceptor is an interface.
+
+- preHandle() - This method is called before handling a request; it returns true, to allow the framework to send the request further to the handler method (or to the next interceptor). If the method returns false, Spring assumes that request has been handled and no further processing is needed.
+
+- postHandle() - This hook runs when the HandlerAdapter is invoked the handler but DispatcherServlet is yet to render the view.We can use this method to add additional attributes to the ModelAndView or to determine the time taken by handler method to process a client's request.
+
+- afterCompletion() - When a request is finished and the view is rendered, we may obtain request and response data, as well as information about exceptions.
+
+~~~
+public class LibraryInterceptor extends HandlerInterceptorAdapter {
+
+@Override
+
+public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
+
+        
+       
+       String bookId = request.getParameter("id");
+
+       if(bookId == null || Integer.parseInt(bookId)<=0){
+
+           System.out.println("error occured");
+           return false;
+         }
+
+      return true;
+       
+
+  }
+    
+@Override
+
+public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView){        
+
+      System.out.println("in postHandle can be used for model updates");
+          
+  
+       
+}
+
+    
+@Override
+
+public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,Exception ex){
+ 
+       
+       System.out.println("in afterCompletion");
+
+        if (ex != null){
+            ex.printStackTrace(); 
+
+ 
+     }
+  
+}
+  
+
+}
+~~~
