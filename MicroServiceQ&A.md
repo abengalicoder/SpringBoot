@@ -97,6 +97,7 @@ Functional Challenges:
 - Require heavy infrastructure setup. 
 - Need Heavy investment. 
 - Require excessive planning to handle or manage operations overhead.
+
 Technical Challenges:
 
 - Microservices are always interdependent. Therefore, they must communicate with each other.   
