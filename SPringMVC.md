@@ -69,8 +69,8 @@ On the other hand, if we define those in two separate classes, the application w
 
 # Core features of Spring MVC are:
 
-It is capable of effectively configuring the framework and classes as beans. It also divides the functional roles and responsibilities separately.
-It allows the definition of an unlimited controller method which makes the application highly adjustable and flexible.
-It provides good customization for handler mapping, binding, view resolution, and validations.
-It helps to transfer the model by using a map. It also provides supports for velocity, JSTL, JSP, and the user can customize locale and theme resolution.
-Spring has its own tag library which makes it more flexible and supports data binding, themes, beans having life cycle up to HTTP request.
+- It is capable of effectively configuring the framework and classes as beans. It also divides the functional roles and responsibilities separately.
+- It allows the definition of an unlimited controller method which makes the application highly adjustable and flexible.
+- It provides good customization for handler mapping, binding, view resolution, and validations.
+- It helps to transfer the model by using a map. It also provides supports for velocity, JSTL, JSP, and the user can customize locale and theme resolution.
+- Spring has its own tag library which makes it more flexible and supports data binding, themes, beans having life cycle up to HTTP request.
