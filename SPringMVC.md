@@ -74,3 +74,15 @@ On the other hand, if we define those in two separate classes, the application w
 - It provides good customization for handler mapping, binding, view resolution, and validations.
 - It helps to transfer the model by using a map. It also provides supports for velocity, JSTL, JSP, and the user can customize locale and theme resolution.
 - Spring has its own tag library which makes it more flexible and supports data binding, themes, beans having life cycle up to HTTP request.
+
+## Explain the concept of Aspect Oriented Programming?
+
+Answer: AOP is an important part of Spring MVC Architecture. AOP is used for crosscutting concern and also for applications, validation of data, module logging, transaction management, authentication, and objects.
+
+There are many parts of Aspect Oriented Programming. These are mentioned below:
+
+- Aspect: Aspect is responsible for cross-cutting concerns like transaction management etc.
+- Advice: It is basically an action and method that are executed and is also used for a specified join point.
+- Pointcut: It is responsible for the execution of advice in terms of regular expressions.
+- Joint Point: It is a point in the application for processes like exception handling, execution of the method, variable values change, etc.
+- Advice Arguments: These arguments are used for passing of methods.
