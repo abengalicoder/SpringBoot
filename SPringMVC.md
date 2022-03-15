@@ -1,4 +1,31 @@
 
+# Explain the concept of the Dispatcher Servlet.
+
+Answer: Dispatcher Servlet is the main central servlet that handles all the incoming HTTP Request and Responses. It has integration with Spring IOC, and thus it allows to use all the features of Spring.
+
+Once the dispatcher servlet receives a request, it forwards it to handler mapping for getting an appropriate controller, and now the controller will call the correct service method and again it will send it back to the dispatcher servlet.
+
+Again, the servlet sends the request to the view resolver for getting the required view and then it sends the response to the client browser.
+
+Code Example to show dispatcher servlet usage:
+
+<web-app>
+ 
+<display-name>Software Testing Help Web Application</display-name>
+ 
+<servlet>
+<servlet-name>SoftwareTestingHelp</servlet-name>
+<servlet-class>org.Springframework.web.servlet.DispatcherServlet</servlet-class>
+<load-on-startup>1</load-on-startup>
+</servlet>
+ 
+<servlet-mapping>
+<servlet-name>SoftwareTestingHelp</servlet-name>
+<url-pattern>/</url-pattern>
+</servlet-mapping>
+ 
+</web-app>
+
 # Explain Model, ModelMap and ModelAndView?
 The Model interface defines a holder for model attributes. The ModelMap has a similar purpose, with the ability to pass a collection of values. It then treats those values as if they were within a Map. We should note that in Model (ModelMap) we can only store data. We put data in and return a view name.
 
